@@ -16,6 +16,7 @@ def followback():
 	while true:
 		for follower in tweepy.Cursor(api.followers).items():
 			follower.follow()
+       time.sleep(2700)
 
 def stream():
 	sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
