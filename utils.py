@@ -20,7 +20,7 @@ def followback():
 
 def stream():
 	sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
-	sapi.filter(track=["@DOGEUSD"])
+	sapi.filter(track=["@USERNAMEHHERE"])
 	
 class CustomStreamListener(tweepy.StreamListener):
     def on_status(self, status):
@@ -33,7 +33,7 @@ class CustomStreamListener(tweepy.StreamListener):
 		try:
 			page = requests.get("http://coinmarketcap.com")
 			soup = BeautifulSoup(page.text)
-			div = soup.find(href="/volume.html#doge")
+			div = soup.find(href="/volume.html#doge") #change to any cryptocurrency you want
 			usd = div["data-usd"]
 			splitty = reply
 			samt = splitty.split(' ',1)
@@ -52,28 +52,28 @@ class CustomStreamListener(tweepy.StreamListener):
 				print("[ALERT] error logged")
 				return stream()
 			if amt == info:
-				api.update_status(now + "@" + replyusr + " I am a bot, and I tweet the current price of DogeCoin every 45 minutes.")
-				print("[CMD: INFO] " + now + "@" + replyusr + " I am a bot, and I tweet the current price of DogeCoin every 45 minutes.")
+				api.update_status(now + "@" + replyusr + " I am a bot.")
+				print("[CMD: INFO] " + now + "@" + replyusr + " I am a bot.")
 				return stream()
 			if amt == commands:
 				api.update_status(now + "@" + replyusr + " Commands: info, error, and current.")
 				print("[CMD: CMDS] " + now + "@" + replyusr + " .")
 				return stream()
 			if amt == current:
-				api.update_status(now + "@"+ replyusr + " 1 DOGE is currently worth $" + usd + " USD.")
-				print("[CMD: CURRENT] " + now + "@"+ replyusr + " 1 DOGE is currently worth $" + usd + " USD.")
+				api.update_status(now + "@"+ replyusr + " 1 CURRENCYHERE is currently worth $" + usd + " USD.")
+				print("[CMD: CURRENT] " + now + "@"+ replyusr + " 1 CURRENCYHERE is currently worth $" + usd + " USD.")
 				return stream()
 			if amt != info:
-				api.update_status(now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\". DogeUSD.tk")
-				print("[CMD: REPLY] " + now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\". DogeUSD.tk")
+				api.update_status(now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
+				print("[CMD: REPLY] " + now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
 				return stream()
 			amount = int(amt)
 			money = Decimal(usd)
 			total = amount * money
 			usertotal = str(total)
 			currentprice = money * 1
-			api.update_status(now + "@"+ replyusr + " " + amt + " DOGE is currently worth $" + usertotal + " USD.")
-			print("[CMD: DOGE]" + now + "@"+ replyusr + " " + amt + " DOGE is currently worth $" + usertotal + " USD.")
+			api.update_status(now + "@"+ replyusr + " " + amt + " CURRENCYHERE is currently worth $" + usertotal + " USD.")
+			print("[CMD: DOGE]" + now + "@"+ replyusr + " " + amt + " CURRENCYHERE is currently worth $" + usertotal + " USD.")
 			return stream()
 		except ValueError:
 			return stream()
