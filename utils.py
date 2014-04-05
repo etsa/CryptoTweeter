@@ -14,8 +14,8 @@ api = tweepy.API(auth)
 def followback():
 	inf = 1
 	while true:
-		for follower in tweepy.Cursor(api.followers).items():
-			follower.follow()
+	for follower in tweepy.Cursor(api.followers).items():
+		follower.follow()
 	time.sleep(2700)
 
 def stream():
