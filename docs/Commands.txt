@@ -1,0 +1,5 @@
+Commands:
+commands: tweets the avaliable commands
+current: tweets the current price
+<number>: tweets the price of that amount of coin
+error: writes to error.txt
