@@ -63,10 +63,6 @@ class CustomStreamListener(tweepy.StreamListener):
 				api.update_status(now + "@"+ replyusr + " 1 CURRENCYHERE is currently worth $" + usd + " USD.")
 				print("[CMD: CURRENT] " + now + "@"+ replyusr + " 1 CURRENCYHERE is currently worth $" + usd + " USD.")
 				return stream()
-			if amt != info:
-				api.update_status(now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
-				print("[CMD: REPLY] " + now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
-				return stream()
 			amount = int(amt)
 			money = Decimal(usd)
 			total = amount * money
@@ -75,6 +71,11 @@ class CustomStreamListener(tweepy.StreamListener):
 			api.update_status(now + "@"+ replyusr + " " + amt + " CURRENCYHERE is currently worth $" + usertotal + " USD.")
 			print("[CMD: DOGE]" + now + "@"+ replyusr + " " + amt + " CURRENCYHERE is currently worth $" + usertotal + " USD.")
 			return stream()
+			if amt != info:
+				api.update_status(now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
+				print("[CMD: REPLY] " + now + "@" + replyusr + " I'll get back to your message ASAP. For bot info, reply with \"info\".")
+				return stream()
+
 		except ValueError:
 			return stream()
 
